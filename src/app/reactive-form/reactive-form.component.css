@@ -1,0 +1,56 @@
+form {
+    margin: 0 auto;
+    padding: 30px;
+}
+
+div {
+    padding: 2px;
+}
+
+.full-name {
+    display: flex;
+    flex-direction: row;
+}
+
+.full-name .nome {
+    width: 298px;
+    margin-left: 20px;
+}
+
+.pessoais {
+    max-width: 620px;
+    margin-left: 20px;
+}
+
+.endereco {
+    max-width: 620px;
+    margin-left: 20px;
+}
+
+.radio {
+    display: flex;
+}
+
+.radio .form-check {
+    padding: 10px;
+    margin-left: 16px;
+}
+
+.address-content-div {
+    display: flex;
+}
+
+.address-content-div #cep {
+    margin: 0px 20px 0px 0px;
+}
+
+.descricao {
+    margin-left: 20px;
+    max-width: 620px;
+}
+
+button {
+    width: 33%;
+    margin-left: 23px;
+    margin-top: 20px;
+}
