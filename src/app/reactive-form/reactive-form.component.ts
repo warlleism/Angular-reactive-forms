@@ -31,7 +31,7 @@ export class ReactiveFormComponent implements OnInit {
       endereco: this.formBuilder.group({
         cep: [null, Validators.required],
         numero: [null, Validators.required],
-        complemento: [null],
+        complemento: [null, Validators.required],
         rua: [null, Validators.required],
         bairro: [null, Validators.required],
         cidade: [null, Validators.required],
@@ -40,7 +40,32 @@ export class ReactiveFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {}
+  onSubmit() {
+    if (this.formulario.valid) {
+      this.http
+        .post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+        .subscribe(
+          (dados) => {
+            alert('Cadastro feito com sucesso!');
+          },
+          (erro: any) => alert('Cadastro incompleto')
+        );
+    } else {
+      alert('Campos incompletos');
+      this.verificaValidacoesForm(this.formulario);
+    }
+  }
+
+  verificaValidacoesForm(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach((campo) => {
+      const controle = formGroup.get(campo);
+      controle.markAsTouched();
+
+      if (controle instanceof FormGroup) {
+        this.verificaValidacoesForm(controle);
+      }
+    });
+  }
 
   verificaValidTouched(campo: any) {
     return (
