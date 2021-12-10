@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConsultaCepService } from '../services/consulta-cep.service';
 
 @Component({
   selector: 'app-reactive-form',
@@ -10,7 +11,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ReactiveFormComponent implements OnInit {
   formulario: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private cepService: ConsultaCepService
+  ) {}
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
@@ -94,20 +99,12 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   consultaCEP() {
-    let cep = this.formulario.get('endereco.cep').value;
+    const cep = this.formulario.get('endereco.cep').value;
 
-    cep = cep.replace(/\D/g, '');
-
-    if (cep != '') {
-      var validacep = /^[0-9]{8}$/;
-
-      if (validacep.test(cep)) {
-        this.http
-          .get(`https://viacep.com.br/ws/${cep}/json`)
-          .subscribe((data) => {
-            this.populaDadosForm(data);
-          });
-      }
+    if (cep != null && cep !== '') {
+      this.cepService.consultaCEP(cep).subscribe((data) => {
+        this.populaDadosForm(data);
+      });
     }
   }
 }

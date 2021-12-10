@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { ConsultaCepService } from './services/consulta-cep.service';
 
 @NgModule({
   declarations: [AppComponent, ReactiveFormComponent],
@@ -14,7 +15,7 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [ConsultaCepService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
