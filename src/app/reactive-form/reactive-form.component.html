@@ -41,19 +41,19 @@
         <div class="radio">
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioFeminino" id="flexRadioDefault2" checked formControlName="radioFeminino">
+                <input class="form-check-input" type="radio" name="radioFeminino" id="flexRadioDefault2" checked formControlName="radioFeminino" value="feminino">
                 <label class="form-check-label" for="flexRadioDefault2">Feminino</label>
             </div>
 
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioMasculino" id="flexRadioDefault1" formControlName="radioMasculino">
+                <input class="form-check-input" type="radio" name="radioMasculino" id="flexRadioDefault1" formControlName="radioMasculino" value="masculino">
                 <label class="form-check-label" for="flexRadioDefault1">Masculino</label>
             </div>
 
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioNaoBinario" id="flexRadioDefault2" formControlName="radioNaoBinario">
+                <input class="form-check-input" type="radio" name="radioNaoBinario" id="flexRadioDefault2" formControlName="radioNaoBinario" value="não-binário">
                 <label class="form-check-label" for="flexRadioDefault2">Não-binário</label>
             </div>
         </div>
@@ -63,20 +63,6 @@
 
     <div class="endereco" formGroupName="endereco">
 
-        <div class="data form" [ngClass]="aplicaCssErro( 'endereco.bairro' )">
-            <label for="" class="form-label">Bairro</label>
-            <input type="text" class="form-control" id="bairro" formControlName="bairro">
-        </div>
-
-        <div class="data form" [ngClass]="aplicaCssErro( 'endereco.cidade' )">
-            <label for="" class="form-label">Cidade</label>
-            <input type="text" class="form-control" id="cidade" formControlName="cidade">
-        </div>
-
-        <div class=" data form " [ngClass]=" aplicaCssErro( 'endereco.estado' ) ">
-            <label for=" " class=" form-label ">Estado</label>
-            <input type="text" class="form-control" id="estado" formControlName="estado">
-        </div>
 
         <div class="address-content-div">
 
@@ -95,8 +81,24 @@
                 <label for="" class="form-label">Número</label>
                 <input type="number" class="form-control" id="numero" placeholder="" formControlName="numero">
             </div>
+
         </div>
 
+
+        <div class="data form" [ngClass]="aplicaCssErro( 'endereco.bairro' )">
+            <label for="" class="form-label">Bairro</label>
+            <input type="text" class="form-control" id="bairro" formControlName="bairro">
+        </div>
+
+        <div class="data form" [ngClass]="aplicaCssErro( 'endereco.cidade' )">
+            <label for="" class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="cidade" formControlName="cidade">
+        </div>
+
+        <div class=" data form " [ngClass]=" aplicaCssErro( 'endereco.estado' ) ">
+            <label for=" " class=" form-label ">Estado</label>
+            <input type="text" class="form-control" id="estado" formControlName="estado">
+        </div>
 
         <div class="form" [ngClass]="aplicaCssErro( 'endereco.complemento' )">
             <label for="" class="form-label">Complemento</label>

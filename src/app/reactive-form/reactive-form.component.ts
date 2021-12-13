@@ -59,6 +59,8 @@ export class ReactiveFormComponent implements OnInit {
       alert('Campos incompletos');
       this.verificaValidacoesForm(this.formulario);
     }
+
+    console.log(this.formulario.value)
   }
 
   verificaValidacoesForm(formGroup: FormGroup) {
