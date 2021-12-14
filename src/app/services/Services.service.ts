@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ConsultaCepService {
+export class Service{
   constructor(private http: HttpClient) {}
 
   consultaCEP(cep: string) {
@@ -19,5 +19,13 @@ export class ConsultaCepService {
       }
     }
     return of({});
+  }
+
+  getGenero(){
+    return [
+      {valor: 'M', desc: 'masculino'},
+      {valor: 'F', desc: 'feminino'},
+      {valor: 'NB', desc: 'não-binário'}
+    ]
   }
 }

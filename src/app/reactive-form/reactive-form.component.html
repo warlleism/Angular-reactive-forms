@@ -23,7 +23,7 @@
 
         <div class="cpf form" [ngClass]="aplicaCssErro( 'dadosPessoais.cpf' )">
             <label for="" class="form-label">CPF</label>
-            <input type="number" class="form-control" id="" placeholder="138-891-517.27" formControlName="cpf">
+            <input type="number" class="form-control" id="" placeholder="00000000000" formControlName="cpf">
         </div>
 
 
@@ -39,30 +39,17 @@
 
 
         <div class="radio">
-
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioFeminino" id="flexRadioDefault2" checked formControlName="radioFeminino" value="feminino">
-                <label class="form-check-label" for="flexRadioDefault2">Feminino</label>
-            </div>
-
-
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioMasculino" id="flexRadioDefault1" formControlName="radioMasculino" value="masculino">
-                <label class="form-check-label" for="flexRadioDefault1">Masculino</label>
-            </div>
-
-
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioNaoBinario" id="flexRadioDefault2" formControlName="radioNaoBinario" value="não-binário">
-                <label class="form-check-label" for="flexRadioDefault2">Não-binário</label>
+            <div class="form-check" *ngFor="let item of generos">
+                <label class="form-check-label" for="flexRadioDefault2">
+          <input class="form-check-input" type="radio" name="genero" id="flexRadioDefault2" formControlName="genero"
+            [value]="item.desc">{{ item.desc }}
+        </label>
             </div>
         </div>
-
 
     </div>
 
     <div class="endereco" formGroupName="endereco">
-
 
         <div class="address-content-div">
 
@@ -109,7 +96,8 @@
     </div>
 
     <div class="descricao" [ngClass]=" aplicaCssErro( 'descricao' ) ">
-        <label for=" exampleFormControlTextarea1 " class=" form-label ">Descreva suas expericências profissionais</label>
+        <label for=" exampleFormControlTextarea1 " class=" form-label ">Descreva suas expericências
+      profissionais</label>
         <textarea class=" form-control " id=" exampleFormControlTextarea1 " rows=" 3 " formControlName="descricao"></textarea>
     </div>
 

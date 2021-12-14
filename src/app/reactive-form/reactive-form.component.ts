@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ConsultaCepService } from '../services/consulta-cep.service';
+import { Service } from '../services/Services.service';
+
 
 @Component({
   selector: 'app-reactive-form',
@@ -11,26 +12,30 @@ import { ConsultaCepService } from '../services/consulta-cep.service';
 export class ReactiveFormComponent implements OnInit {
   formulario: FormGroup;
 
+  generos: any[];
+
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private cepService: ConsultaCepService
+    private Service: Service
   ) {}
 
   ngOnInit(): void {
+
+    this.generos = this.Service.getGenero()
+
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required]],
       sobrenome: [null, [Validators.required]],
       descricao: [null, Validators.required],
+
 
       dadosPessoais: this.formBuilder.group({
         email: [null, [Validators.email, Validators.required]],
         cpf: [null, Validators.required],
         rg: [null, Validators.required],
         nascimento: [null, Validators.required],
-        radioFeminino: [null],
-        radioMasculino: [null],
-        radioNaoBinario: [null],
+        genero: [null],
       }),
 
       endereco: this.formBuilder.group({
@@ -46,6 +51,7 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   onSubmit() {
+
     if (this.formulario.valid) {
       this.http
         .post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
@@ -104,7 +110,7 @@ export class ReactiveFormComponent implements OnInit {
     const cep = this.formulario.get('endereco.cep').value;
 
     if (cep != null && cep !== '') {
-      this.cepService.consultaCEP(cep).subscribe((data) => {
+      this.Service.consultaCEP(cep).subscribe((data) => {
         this.populaDadosForm(data);
       });
     }
